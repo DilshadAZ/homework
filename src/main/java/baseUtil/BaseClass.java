@@ -44,7 +44,7 @@ public JavascriptExecutor js;
 	}	
 	public void initDriver() {
 		String browerName = configuration.getProperties(BROWSER); //"browser"
-		switch (browerName) { //"browser"
+		switch (browerName) { 
 		case "chrome":
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
