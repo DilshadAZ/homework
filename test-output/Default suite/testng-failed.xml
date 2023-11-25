@@ -6,7 +6,7 @@
       <class name="pagesTest.HomePageTest">
         <methods>
           <include name="tearUp"/>
-          <include name="usingJavaScriptForSendKeysAndClickInLogIn"/>
+          <include name="dropdownMethod1"/>
           <include name="setUp"/>
         </methods>
       </class> <!-- pagesTest.HomePageTest -->

@@ -24,6 +24,8 @@ public class HomePage {
 	WebElement inputPassword;
 	@FindBy(xpath = "//div[@class='main-nav-top-logo']")
 	WebElement clickLogInButton;
+	@FindBy(xpath = "//img[@itemprop='logo']")
+	WebElement logoOfBOA;
 
 	public void inputTextInUserIDfield() {
 		inputTextInUserID.sendKeys("D GYg");
@@ -60,5 +62,10 @@ public class HomePage {
 		Thread.sleep(3000);
 		clickElement(clickLogInButton);
 		Thread.sleep(3000);
+	}
+	public boolean logoIsDisplayed() {
+	
+	return logoOfBOA.isDisplayed();
+			
 	}
 }

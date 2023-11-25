@@ -2,19 +2,24 @@ package pagesTest;
 
 import java.time.Duration;
 
-import org.openqa.selenium.By;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-
-
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import baseUtil.BaseClass;
 
 
 
+
 public class HomePageTest extends BaseClass {
+	
+
 	@Test(enabled = false)
 	public void inputTextInUserIDFieldTest() {
 		homepage.inputTextInUserIDfield();
@@ -76,11 +81,6 @@ public class HomePageTest extends BaseClass {
 
 		driver.findElement(By.xpath("//span[text()='Log In']")).click();
 		Thread.sleep(3000);
-	}
-
-	@Test(enabled = false)
-	public void getTitleName() {
-		System.out.println("The Title of the page is " + driver.getTitle());
 	}
 
 	@Test(enabled = false)
@@ -175,7 +175,7 @@ public class HomePageTest extends BaseClass {
 		Thread.sleep(3000);
 	}
 
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void usingJavaScriptForSendKeysAndClickInLogIn() throws InterruptedException {
 		Thread.sleep(3000);
 
@@ -192,7 +192,63 @@ public class HomePageTest extends BaseClass {
 		Thread.sleep(3000);
 		js.executeScript("arguments[0].click()", loginbutton);
 		Thread.sleep(3000);
-
 	}
+	@Test(enabled = false)
+	public void assertionTrueFalseofLogoIsDisplayed1() {
+		homepage.logoIsDisplayed();
+		Assert.assertTrue(false);
+		//Assert.assertFalse(false);
+	}
+	@Test(enabled = false)
+	public void assertionTrueFalseofLogoIsDisplayed2() {
+		homepage.logoIsDisplayed();
+		Assert.assertTrue(false);
+		//Assert.assertFalse(false);
+}
+	@Test(enabled = false)
+	public void getTitleNameBySoftAssert() throws InterruptedException {
+		//System.out.println("The Title of the page is " + driver.getTitle());
+		String actual = driver.getTitle();
+		Thread.sleep(3000);
+		System.out.println("The title is " + actual);
+		String expectedTitle = " Bank of America - Banking, Credit Cards, Loans and Merrill Investing";
+		SoftAssert softAssert = new SoftAssert();
+		softAssert.assertEquals(actual, expectedTitle);
+		String currentURL = driver.getCurrentUrl();
+		System.out.println("The current url is" + currentURL);
+	    Thread.sleep(3000);
 
+}
+	@Test(enabled = false)
+	public void getTitleNameByHardAssert() throws InterruptedException {
+		//System.out.println("The Title of the page is " + driver.getTitle());
+		String actual = driver.getTitle();
+		Thread.sleep(3000);
+		System.out.println("The title is " + actual);
+		String expectedTitle = " Bank of America - Banking, Credit Cards, Loans and Merrill Investing";
+		Assert.assertEquals(actual, expectedTitle);
+		Thread.sleep(3000);
+		String currentURL = driver.getCurrentUrl();
+		System.out.println("The current url is" + currentURL);
+		//it fails that is why did not go to next test line-225+226,
+		//hard assertion does not allow to go next test if the previous test is fails.
+	}
+	@Test(enabled = true)
+	public void dropdownMethod1() throws InterruptedException {
+		driver.navigate().to("https://www.amazon.com/ref=nav_logo");
+	
+		//js = (JavascriptExecutor) driver;
+		//WebElement click  = driver.findElement(By.xpath("//select[@id='searchDropdownBox']"));
+		//js.executeScript("arguments[0].click()", click);
+		//driver.findElement(By.xpath("//select[@id='searchDropdownBox']")).click();
+	
+		WebElement amazonfresh = driver.findElement(By.xpath("//select[@id='searchDropdownBox']"));
+		amazonfresh.click();
+		Thread.sleep(3000);
+		Select select = new Select(amazonfresh);
+		select.selectByVisibleText("Amazon Fresh");
+		Thread.sleep(3000);
+		
+		
+}	
 }
