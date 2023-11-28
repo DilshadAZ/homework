@@ -7,6 +7,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -23,6 +25,8 @@ public Dimension dimension;
 public Dimension dimension2;
 public Actions actions;
 public JavascriptExecutor js;
+public Select select;
+public WebDriverWait wait;
 
 	
 
@@ -34,9 +38,11 @@ public JavascriptExecutor js;
 		driver.manage().deleteAllCookies();
 		driver.get(configuration.getProperties(URL));
 		long pageLoadWait =  Long.parseLong(configuration.getProperties(PAGELOAD_WAIT));
-		long implicitlyWait = Long.parseLong(configuration.getProperties(EXPLICITLY_WAIT));
+		long implicitlyWait = Long.parseLong(configuration.getProperties(IMPLICITLY_WAIT));
+		long explicitlywait = Long.parseLong(configuration.getProperties(EXPLICITLY_WAIT));
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(pageLoadWait));
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitlyWait));
+		wait = new WebDriverWait(driver, Duration.ofSeconds(explicitlywait));
 		initClass();
 		actions = new Actions(driver);
 		js = (JavascriptExecutor) driver;

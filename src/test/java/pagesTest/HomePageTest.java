@@ -7,6 +7,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -233,22 +235,43 @@ public class HomePageTest extends BaseClass {
 		//it fails that is why did not go to next test line-225+226,
 		//hard assertion does not allow to go next test if the previous test is fails.
 	}
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void dropdownMethod1() throws InterruptedException {
-		driver.navigate().to("https://www.amazon.com/ref=nav_logo");
+		driver.navigate().to("https://www.ebay.com/");
 	
 		//js = (JavascriptExecutor) driver;
 		//WebElement click  = driver.findElement(By.xpath("//select[@id='searchDropdownBox']"));
 		//js.executeScript("arguments[0].click()", click);
 		//driver.findElement(By.xpath("//select[@id='searchDropdownBox']")).click();
 	
-		WebElement amazonfresh = driver.findElement(By.xpath("//select[@id='searchDropdownBox']"));
-		amazonfresh.click();
+		WebElement all = driver.findElement(By.xpath("//select[@id='gh-cat']"));
+		all.click();
 		Thread.sleep(3000);
-		Select select = new Select(amazonfresh);
-		select.selectByVisibleText("Amazon Fresh");
+		select = new Select(all);
 		Thread.sleep(3000);
-		
-		
+		//select.selectByValue("267");
+		select.selectByVisibleText("Books");
+		Thread.sleep(3000);			
 }	
+
+@Test(enabled = true)
+public void scrollDownWithExplicitlyWait() throws InterruptedException {
+	driver.navigate().to("https://enthrallit.com/");
+	Thread.sleep(3000);
+	WebElement clickSelenium = driver.findElement(By.linkText("Selenium"));
+	
+	js.executeScript("arguments[0].click()", clickSelenium);
+	Thread.sleep(3000);
+	js.executeScript("window.scrollBy(0, 1200)", "");
+	Thread.sleep(3000);
+	WebElement writeText = driver.findElement(By.cssSelector("input.form-control"));
+	js.executeScript("arguments[0].value='My Name'", writeText);
+	Thread.sleep(3000);
+	WebElement hideButton= driver.findElement(By.xpath("//button[@id='formButton']"));
+	//WebElement hideButton= driver.findElement(By.cssSelector("div.class"));
+	js.executeScript("arguments[0].click()", hideButton);
+
+	wait.until(ExpectedConditions.elementToBeClickable(hideButton));
+	Thread.sleep(3000);
+}
 }

@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-11-25T13:58:01 EST" name="Default suite" finished-at="2023-11-25T13:58:12 EST" duration-ms="11457">
+  <suite started-at="2023-11-27T19:15:44 EST" name="Default suite" finished-at="2023-11-27T19:16:08 EST" duration-ms="23090">
     <groups>
     </groups>
-    <test started-at="2023-11-25T13:58:01 EST" name="Default test" finished-at="2023-11-25T13:58:12 EST" duration-ms="11457">
+    <test started-at="2023-11-27T19:15:44 EST" name="Default test" finished-at="2023-11-27T19:16:08 EST" duration-ms="23090">
       <class name="pagesTest.HomePageTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:pagesTest.HomePageTest@6d4d66d2]" started-at="2023-11-25T13:58:01 EST" name="setUp" finished-at="2023-11-25T13:58:04 EST" duration-ms="3439" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:pagesTest.HomePageTest@7526515b]" started-at="2023-11-27T19:15:45 EST" name="setUp" finished-at="2023-11-27T19:15:48 EST" duration-ms="3384" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="dropdownMethod1()[pri:0, instance:pagesTest.HomePageTest@6d4d66d2]" started-at="2023-11-25T13:58:04 EST" name="dropdownMethod1" finished-at="2023-11-25T13:58:12 EST" duration-ms="7564" status="PASS">
+        <test-method signature="scrollDownMethod()[pri:0, instance:pagesTest.HomePageTest@7526515b]" started-at="2023-11-27T19:15:48 EST" name="scrollDownMethod" finished-at="2023-11-27T19:16:07 EST" duration-ms="19344" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- dropdownMethod1 -->
-        <test-method is-config="true" signature="tearUp()[pri:0, instance:pagesTest.HomePageTest@6d4d66d2]" started-at="2023-11-25T13:58:12 EST" name="tearUp" finished-at="2023-11-25T13:58:12 EST" duration-ms="380" status="PASS">
+        </test-method> <!-- scrollDownMethod -->
+        <test-method is-config="true" signature="tearUp()[pri:0, instance:pagesTest.HomePageTest@7526515b]" started-at="2023-11-27T19:16:07 EST" name="tearUp" finished-at="2023-11-27T19:16:08 EST" duration-ms="302" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearUp -->
