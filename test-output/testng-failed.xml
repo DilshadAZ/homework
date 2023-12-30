@@ -6,8 +6,8 @@
       <class name="pagesTest.HomePageTest">
         <methods>
           <include name="tearUp"/>
-          <include name="scrollDownMethod"/>
           <include name="setUp"/>
+          <include name="findThhowToReadTheTablee"/>
         </methods>
       </class> <!-- pagesTest.HomePageTest -->
     </classes>

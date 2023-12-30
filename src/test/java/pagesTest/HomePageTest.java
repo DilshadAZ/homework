@@ -1,8 +1,9 @@
 package pagesTest;
 
 import java.time.Duration;
+import java.util.List;
 
-
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -16,11 +17,7 @@ import org.testng.asserts.SoftAssert;
 
 import baseUtil.BaseClass;
 
-
-
-
 public class HomePageTest extends BaseClass {
-	
 
 	@Test(enabled = false)
 	public void inputTextInUserIDFieldTest() {
@@ -116,6 +113,8 @@ public class HomePageTest extends BaseClass {
 		Thread.sleep(3000);
 		driver.navigate().refresh();
 		Thread.sleep(3000);
+		driver.navigate().forward();
+		Thread.sleep(3000);
 	}
 
 	@Test(enabled = false)
@@ -195,21 +194,24 @@ public class HomePageTest extends BaseClass {
 		js.executeScript("arguments[0].click()", loginbutton);
 		Thread.sleep(3000);
 	}
+
 	@Test(enabled = false)
 	public void assertionTrueFalseofLogoIsDisplayed1() {
 		homepage.logoIsDisplayed();
 		Assert.assertTrue(false);
-		//Assert.assertFalse(false);
+		// Assert.assertFalse(false);
 	}
+
 	@Test(enabled = false)
 	public void assertionTrueFalseofLogoIsDisplayed2() {
 		homepage.logoIsDisplayed();
 		Assert.assertTrue(false);
-		//Assert.assertFalse(false);
-}
+		// Assert.assertFalse(false);
+	}
+
 	@Test(enabled = false)
 	public void getTitleNameBySoftAssert() throws InterruptedException {
-		//System.out.println("The Title of the page is " + driver.getTitle());
+		// System.out.println("The Title of the page is " + driver.getTitle());
 		String actual = driver.getTitle();
 		Thread.sleep(3000);
 		System.out.println("The title is " + actual);
@@ -218,12 +220,13 @@ public class HomePageTest extends BaseClass {
 		softAssert.assertEquals(actual, expectedTitle);
 		String currentURL = driver.getCurrentUrl();
 		System.out.println("The current url is" + currentURL);
-	    Thread.sleep(3000);
+		Thread.sleep(3000);
 
-}
+	}
+
 	@Test(enabled = false)
 	public void getTitleNameByHardAssert() throws InterruptedException {
-		//System.out.println("The Title of the page is " + driver.getTitle());
+		// System.out.println("The Title of the page is " + driver.getTitle());
 		String actual = driver.getTitle();
 		Thread.sleep(3000);
 		System.out.println("The title is " + actual);
@@ -232,46 +235,297 @@ public class HomePageTest extends BaseClass {
 		Thread.sleep(3000);
 		String currentURL = driver.getCurrentUrl();
 		System.out.println("The current url is" + currentURL);
-		//it fails that is why did not go to next test line-225+226,
-		//hard assertion does not allow to go next test if the previous test is fails.
+		// it fails that is why did not go to next test line-225+226,
+		// hard assertion does not allow to go next test if the previous test is fails.
 	}
+
 	@Test(enabled = false)
 	public void dropdownMethod1() throws InterruptedException {
 		driver.navigate().to("https://www.ebay.com/");
-	
-		//js = (JavascriptExecutor) driver;
-		//WebElement click  = driver.findElement(By.xpath("//select[@id='searchDropdownBox']"));
-		//js.executeScript("arguments[0].click()", click);
-		//driver.findElement(By.xpath("//select[@id='searchDropdownBox']")).click();
-	
+
+		// js = (JavascriptExecutor) driver;
+		// WebElement click =
+		// driver.findElement(By.xpath("//select[@id='searchDropdownBox']"));
+		// js.executeScript("arguments[0].click()", click);
+		// driver.findElement(By.xpath("//select[@id='searchDropdownBox']")).click();
+
 		WebElement all = driver.findElement(By.xpath("//select[@id='gh-cat']"));
-		all.click();
+		// all.click();
 		Thread.sleep(3000);
 		select = new Select(all);
 		Thread.sleep(3000);
-		//select.selectByValue("267");
+		// select.selectByValue("267");
 		select.selectByVisibleText("Books");
-		Thread.sleep(3000);			
-}	
+		Thread.sleep(3000);
+	}
 
-@Test(enabled = true)
-public void scrollDownWithExplicitlyWait() throws InterruptedException {
-	driver.navigate().to("https://enthrallit.com/");
-	Thread.sleep(3000);
-	WebElement clickSelenium = driver.findElement(By.linkText("Selenium"));
+	@Test(enabled = false)
+	public void scrollDownWithExplicitlyWait() throws InterruptedException {
+		driver.navigate().to("https://enthrallit.com/");
+		Thread.sleep(3000);
+		WebElement clickSelenium = driver.findElement(By.linkText("Selenium"));
+
+		js.executeScript("arguments[0].click()", clickSelenium);
+		Thread.sleep(3000);
+		//js.executeScript("window.scrollBy(0, 1200)", "");
+		WebElement hideButton = driver.findElement(By.xpath("//button[@id='formButton']"));
+		Thread.sleep(3000);
+		//WebElement temp = driver.findElement(By.xpath("/html/body/div[2]/div/div[8]/div/div/div/div[1]/a/button"));
+		//js.executeScript("arguments[0].scrollIntoView(true);", temp);
+
+
+		
+		// WebElement hideButton= driver.findElement(By.cssSelector("div.class"));
+		js.executeScript("arguments[0].click()", hideButton);
+		WebElement writeText = driver.findElement(By.cssSelector("input.form-control"));
+		js.executeScript("arguments[0].value='My Name'", writeText);
+		Thread.sleep(3000);
+		
+		// wait.until(ExpectedConditions.elementToBeClickable(hideButton)).click();
+
+		Thread.sleep(3000);
+
+		//driver.findElement(By.xpath("//a[text()='Selenium']")).click();
+		//Thread.sleep(4000);
+	}
+
+	@Test(enabled = false)
+
+	public void useOfRightClick() throws InterruptedException {
+		driver.navigate().to("https://enthrallit.com/");
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		Thread.sleep(4000);
+		driver.findElement(By.xpath("//a[text()='Selenium']")).click();
+		Thread.sleep(4000);
+		js.executeScript("window.scrollBy(0, 2200)", "");
+		Thread.sleep(3000);
+		WebElement rightClick = driver.findElement(By.xpath("//button[text()='Right Click One']"));
+		actions.moveToElement(rightClick).contextClick().build().perform();
+		Thread.sleep(3000);
+		WebElement edit = driver.findElement(By.xpath("//span[text()='Edit']"));
+		Thread.sleep(4000);
+		edit.click(); 
+		Thread.sleep(4000);
+		Alert alert = driver.switchTo().alert();
+		System.out.println("\nAlert Text:" + alert.getText());
+		alert.accept();
+		}
+	@Test(enabled= false)
 	
-	js.executeScript("arguments[0].click()", clickSelenium);
-	Thread.sleep(3000);
-	js.executeScript("window.scrollBy(0, 1200)", "");
-	Thread.sleep(3000);
-	WebElement writeText = driver.findElement(By.cssSelector("input.form-control"));
-	js.executeScript("arguments[0].value='My Name'", writeText);
-	Thread.sleep(3000);
-	WebElement hideButton= driver.findElement(By.xpath("//button[@id='formButton']"));
-	//WebElement hideButton= driver.findElement(By.cssSelector("div.class"));
-	js.executeScript("arguments[0].click()", hideButton);
+	public void findTheElementsAndListByUsingActions() throws InterruptedException {
+		driver.navigate().to("https://www.ebay.com/");
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		Thread.sleep(4000);
+		WebElement fashion = driver.findElement(By.xpath("//a[contains(text(),'Fashion')]//parent::li[@class='vl-flyout-nav__js-tab']"));
+		actions.moveToElement(fashion).build().perform();
+		Thread.sleep(4000);
+		List<WebElement>listOfFashion = driver.findElements(By.xpath("//*[@id='vl-flyout-nav']/ul/li[7]/div[2]/div[1]/nav[1]/ul"));
 
-	wait.until(ExpectedConditions.elementToBeClickable(hideButton));
-	Thread.sleep(3000);
+		for(int i =0; i<listOfFashion.size();i++) {
+			
+			System.out.println(listOfFashion.get(i).getText());
+		}
+		}
+		@Test(enabled= false)
+		public void findTheRowofaTable() throws InterruptedException {
+		driver.get("https://www.ebay.com/");
+		Thread.sleep(3000);
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		//Thread.sleep(3000);
+		
+		actions.keyDown(Keys.CONTROL).sendKeys(Keys.END).perform();
+		Thread.sleep(5000);
+		WebElement rowofTable = driver.findElement(By.xpath("//*[@id=\"gf-BIG\"]/table/tbody/tr/td[2]"));
+		System.out.println(rowofTable.getText());
+		Thread.sleep(3000);
+		
+	}
+		@Test(enabled= false)
+		public void findTable() throws InterruptedException {
+		driver.get("https://www.ebay.com/");
+		Thread.sleep(3000);
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		//Thread.sleep(3000);
+		
+		actions.keyDown(Keys.CONTROL).sendKeys(Keys.END).perform();
+		Thread.sleep(3000);
+		WebElement rowofTable = driver.findElement(By.id("gf-BIG"));
+		System.out.println(rowofTable.getText());
+		Thread.sleep(5000);
 }
+		@Test(enabled= true)
+		public void windowHandling() throws InterruptedException {
+			
+			String parentWindow = driver.getWindowHandle() ;
+			
+			
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
